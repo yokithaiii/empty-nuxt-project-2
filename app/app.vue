@@ -8,10 +8,8 @@ onMounted(() => {
 
 <template>
 	<UApp>
-		<div class="bg-[var(--ui-bg)]">
-			<NuxtLayout>
-				<NuxtPage />
-			</NuxtLayout>
-		</div>
+		<NuxtLayout>
+			<NuxtPage />
+		</NuxtLayout>
 	</UApp>
 </template>
