@@ -1,9 +1,6 @@
 <template>
-	<UApp>
-		<div class="bg-[var(--ui-bg)]">
-			<NuxtLayout>
-				<NuxtPage />
-			</NuxtLayout>
-		</div>
-	</UApp>
+	<div>
+		CLEAN NUXT
+		<UButton>UI BUTTON</UButton>
+	</div>
 </template>

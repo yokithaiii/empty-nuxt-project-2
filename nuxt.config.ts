@@ -2,11 +2,6 @@ import Tailwind from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
 	ssr: false,
-	hooks: {
-		'prerender:routes'({ routes }) {
-			routes.clear();
-		},
-	},
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: false },
 	runtimeConfig: {
