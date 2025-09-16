@@ -1,6 +1,7 @@
 import Tailwind from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
+	ssr: false,
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: false },
 	runtimeConfig: {
@@ -8,6 +9,16 @@ export default defineNuxtConfig({
 			twaToken: process.env.TELEGRAM_BOT_TOKEN,
 			apiUrl: process.env.BACKEND_API_URL,
 		},
+	},
+		nitro: {
+		hooks: {
+		'prerender:generate'(route) {
+			const routesToSkip = ['/index.html', '/200.html', '/404.html']
+			if (routesToSkip.includes(route.route)) {
+			route.skip = true
+			}
+		}
+		}
 	},
 	app: {
 		head: {
