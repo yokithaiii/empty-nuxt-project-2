@@ -19,7 +19,12 @@ export default defineNuxtConfig({
 			meta: [
 				{ 'http-equiv': 'cache-control', content: 'no-cache' },
         		{ 'http-equiv': 'expires', content: '0' }
-			]
+			],
+			script: [
+				{
+					src: 'https://telegram.org/js/telegram-web-app.js',
+				},
+			],
 		}
 	},
 	modules: [
