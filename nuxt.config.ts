@@ -33,8 +33,13 @@ export default defineNuxtConfig({
 		'@nuxt/eslint',
 	],
 	css: ['~/assets/css/main.css'],
+	experimental: {
+		entryImportMap: false
+	},
 	vite: {
-		plugins: [Tailwind()],
+		plugins: [
+			Tailwind(),
+		],
 	},
 	ui: {
 		theme: {
