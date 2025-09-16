@@ -1,5 +1,3 @@
 <template>
-  <UApp>
-    <NuxtPage />
-  </UApp>
+  Только текст, и кнопка <UButton>UI BUTTIN</UButton>
 </template>
