@@ -2,15 +2,17 @@
 import type { StepperItem } from '@nuxt/ui'
 import type { IListMarathon } from '~/types/common'
 import type { IUser } from '~/types/user'
+import { useWebAppCloudStorage } from 'vue-tg'
 
 const store = useStore()
 const drawerContent = useDrawer()
+const cloudStorage = useWebAppCloudStorage()
 
 const states = reactive({
     loading: false,
     errorText: null as null | string,
     userData: {
-        email: null,
+        email: null as null | string,
     } as IUser,
 })
 
@@ -32,6 +34,10 @@ const saveUserData = async () => {
         }
 
         store.value.email = states.userData.email;
+        
+        if (store.value.email) {
+            await cloudStorage.setStorageItem('user_email', store.value.email);
+        }
         
         getData();
 

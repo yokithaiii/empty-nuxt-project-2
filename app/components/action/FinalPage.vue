@@ -25,7 +25,7 @@ const getData = async () => {
 		if (res.status === 200 && res._data) {
 			states.data = res._data;
 			states.data.user.email = store.value.email;
-			states.data.user.phone = store.value.phone;
+			states.data.user.phone = res._data.user.phone;
 		}
 
 		if (!store.value.password) {
@@ -76,7 +76,7 @@ const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text);
     useToast().add({
-      title: '✅ Скопировано в буфер обмена',
+      title: '✅ Скопировано',
       close: false,
     });
   } catch (err) {
@@ -144,11 +144,11 @@ const active = ref(2)
 						<span>Ваши данные для входа в приложение:</span>
 						<br>
 						<span class="cursor-pointer text-xs" @click="copyToClipboard(states.data.user?.email ?? '')">
-							Ваш логин: <code class="text-secondary text-xs">{{ states.data.user?.email ?? '' }}</code>
+							Логин: <code class="text-secondary text-xs">{{ states.data.user?.email ?? '' }}</code>
 						</span>
 						<br>
 						<span class="cursor-pointer text-xs" @click="copyToClipboard(store.password ?? '')">
-							Ваш новый пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
+							Новый пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
 						</span>
 					</div>
 

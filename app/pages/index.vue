@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useWebAppCloudStorage } from 'vue-tg';
+
 import type { NuxtError } from '#app'
 
 const props = defineProps({
@@ -25,6 +27,8 @@ const states = reactive({
 
 const store = useStore();
 const drawerContent = useDrawer();
+const colorMode = useColorMode();
+const cloudStorage = useWebAppCloudStorage();
 
 const openModalEmail = () => {
 	store.value.phone = null;
@@ -37,6 +41,17 @@ const openModalEmail = () => {
 	store.value.have_workout = false;
 	drawerContent.value.isOpen = true;
 	drawerContent.value.state = 'get-email-page';
+};
+
+const getEmail = async () => {
+	try {
+		const res = await cloudStorage.getStorageItem('user_email')
+		if (res) {
+			store.value.email = res;
+		}
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 const getMarathon = async () => {
@@ -61,7 +76,9 @@ const getMarathon = async () => {
 };
 
 onMounted(() => {
+	colorMode.preference = 'dark';
 	setTimeout(() => {
+		getEmail();
 		getMarathon();
 	}, 100);
 });
@@ -70,7 +87,7 @@ onMounted(() => {
 
 <template>
 	<section class="l-index">
-		
+
 		<h2>{{ error?.statusCode }}</h2>
 
 		<div class="bg-zinc-950 dark:bg-zinc-950 rounded-[8px] mt-1">
