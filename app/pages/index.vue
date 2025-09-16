@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import type { IMarathon } from '~/types/marathon';
+
+interface IMarathon {
+	id: string;
+	title: string;
+	price: number;
+	description: string;
+	image: string;
+}
 
 const states = reactive({
 	text: '',

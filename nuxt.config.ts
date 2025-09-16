@@ -1,6 +1,7 @@
 import Tailwind from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
+	ssr: true,
 	spaLoadingTemplate: 'spa-loading-template.html',
 	compatibilityDate: '2025-07-15',
 	future: {
