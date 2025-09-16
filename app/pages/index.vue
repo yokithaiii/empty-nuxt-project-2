@@ -10,7 +10,6 @@ const states = reactive({
 });
 
 const store = useStore();
-const drawerContent = useDrawer();
 
 const openModalEmail = () => {
 	store.value.phone = null;
@@ -21,8 +20,6 @@ const openModalEmail = () => {
 	store.value.buy_link = null;
 	store.value.is_new_user = false;
 	store.value.have_workout = false;
-	drawerContent.value.isOpen = true;
-	drawerContent.value.state = 'get-email-page';
 };
 
 const getMarathon = async () => {
@@ -96,35 +93,11 @@ onMounted(() => {
 						</span>
 					</div>
 
-					<main-buttons :loading="states.loading" :disabled="states.disabled" />
-
 				</div>
 			</div>
 		</div>
 
-		<UDrawer v-model:open="drawerContent.isOpen">
-			<template #content>
-				<article class="my-4 px-2 h-screen overflow-y-auto">
-
-					<template v-if="drawerContent.state === 'get-email-page'">
-						<action-get-email />
-					</template>
-
-					<template v-if="drawerContent.state === 'payment-page'">
-						<action-payment-page />
-					</template>
-
-					<template v-if="drawerContent.state === 'final-page'">
-						<action-final-page />
-					</template>
-
-					<template v-if="drawerContent.state === 'get-phone-page'">
-						<action-get-phone />
-					</template>
-
-				</article>
-			</template>
-		</UDrawer>
+		
 	</section>
 </template>
 
