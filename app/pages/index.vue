@@ -3,7 +3,7 @@ import type { IMarathon } from '~/types/marathon';
 
 const states = reactive({
 	text: '',
-	loading: false,
+	loading: true,
 	errorText: null as null | string,
 	data: null as null | IMarathon,
 	disabled: false
