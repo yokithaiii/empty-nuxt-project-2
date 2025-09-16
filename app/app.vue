@@ -1,3 +1,9 @@
 <template>
-  Только текст, и кнопка <UButton>UI BUTTIN</UButton>
+	<UApp>
+		<div class="bg-[var(--ui-bg)]">
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
+		</div>
+	</UApp>
 </template>
