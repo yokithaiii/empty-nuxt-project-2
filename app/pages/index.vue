@@ -48,7 +48,9 @@ const getMarathon = async () => {
 };
 
 onMounted(() => {
-	getMarathon();
+	setTimeout(() => {
+		getMarathon();
+	}, 100);
 	// colorMode.preference = 'dark';
 });
 
