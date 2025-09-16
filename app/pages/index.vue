@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import type { NuxtError } from '#app'
+
+const props = defineProps({
+  error: Object as () => NuxtError
+})
+
+const handleError = () => clearError({ redirect: '/' })
 
 interface IMarathon {
 	id: string;
@@ -63,6 +70,9 @@ onMounted(() => {
 
 <template>
 	<section class="l-index">
+		
+		<h2>{{ error?.statusCode }}</h2>
+
 		<div class="bg-zinc-950 dark:bg-zinc-950 rounded-[8px] mt-1">
 			<div class="l-wrapper">
 				<div class="py-4">
