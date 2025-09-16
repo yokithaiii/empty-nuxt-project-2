@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StepperItem } from '@nuxt/ui'
 import type { IUser } from '~/types/user'
+import { vMaska } from 'maska/vue'
 
 const store = useStore()
 const drawerContent = useDrawer()
@@ -14,7 +15,7 @@ const states = reactive({
 })
 
 onMounted(() => {
-     states.userData.phone = '+7 ('
+    states.userData.phone = '+7 ('
 })
 
 const handleRefreshPage = () => {
@@ -128,11 +129,10 @@ function clearError() {
 
             <section class="l-buttons gap-1 mt-4">
 
-                <!-- <ProximaPhone
-                    class="l-label flex custom-phone-input"
-                    label="Введите ваш номер телефона"
-                    v-model="states.userData.phone"
-                /> -->
+                <label for="" class="l-label">
+                    <span>Введите номер телефона</span>
+                    <UInput v-maska="'+7 (###) ###-##-##'" placeholder="+7 (999) 999-99-99" icon="ant-design:phone-filled" v-model="states.userData.phone"/>
+                </label>
 
                 <label class="l-label flex">
                     <UButton class="justify-center" size="lg" @click="saveUserData" :loading="states.loading"
