@@ -4,11 +4,17 @@ export default defineNuxtConfig({
 	ssr: false,
 	hooks: {
 		'prerender:routes'({ routes }) {
-			routes.clear(); // Не создает никаких маршрутов (кроме значений по умолчанию)
+			routes.clear();
 		},
 	},
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: false },
+	runtimeConfig: {
+		public: {
+			twaToken: process.env.TELEGRAM_BOT_TOKEN,
+			apiUrl: process.env.BACKEND_API_URL,
+		},
+	},
 	modules: [
 		'@nuxt/ui',
 		'@nuxt/eslint',

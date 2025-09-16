@@ -5,7 +5,7 @@
 <template>
 	<section class="l-index">
 
-		<h1>Clear Nuxt</h1>
+		<h1>TEST 2 changes configs</h1>
 		<UButton class="mt-2 block text-[16px]">UI Button</UButton>
 		<hr>
 
