@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// import { useWebAppViewport } from 'vue-tg'
+import { useWebAppViewport } from 'vue-tg'
 
-// onMounted(() => {
-// 	useWebAppViewport().expand()
-// })
+onMounted(() => {
+	useWebAppViewport().expand()
+})
 </script>
 
 <template>
