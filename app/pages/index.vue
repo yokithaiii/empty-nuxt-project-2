@@ -6,25 +6,24 @@ const states = reactive({
 	loading: true,
 	errorText: null as null | string,
 	data: null as null | IMarathon,
-	disabled: false
+	disabled: false,
 });
 
 const store = useStore();
-const drawerContent = useDrawer();
-// const colorMode = useColorMode();
+// const drawerContent = useDrawer();
 
-const openModalEmail = () => {
-	store.value.phone = null;
-	store.value.firstname = null;
-	store.value.lastname = null;
-	store.value.password = null;
-	store.value.avatar = null;
-	store.value.buy_link = null;
-	store.value.is_new_user = false;
-	store.value.have_workout = false;
-	drawerContent.value.isOpen = true;
-	drawerContent.value.state = 'get-email-page';
-};
+// const openModalEmail = () => {
+// 	store.value.phone = null;
+// 	store.value.firstname = null;
+// 	store.value.lastname = null;
+// 	store.value.password = null;
+// 	store.value.avatar = null;
+// 	store.value.buy_link = null;
+// 	store.value.is_new_user = false;
+// 	store.value.have_workout = false;
+// 	drawerContent.value.isOpen = true;
+// 	drawerContent.value.state = 'get-email-page';
+// };
 
 const getMarathon = async () => {
 	states.loading = true;
@@ -51,7 +50,6 @@ onMounted(() => {
 	setTimeout(() => {
 		getMarathon();
 	}, 100);
-	// colorMode.preference = 'dark';
 });
 
 </script>
@@ -93,20 +91,20 @@ onMounted(() => {
 					<div v-if="store.email" class="mt-2 text-white">
 						<span class="text-[14px]">
 							Указанная почта:
-							<span class="text-emerald-400 decoration-underline" @click="openModalEmail">
+							<!-- <span class="text-emerald-400 decoration-underline" @click="openModalEmail">
 								{{ store.email }}
-							</span>
+							</span> -->
 							- нажмите чтобы изменить
 						</span>
 					</div>
 
-					<main-buttons :loading="states.loading" :disabled="states.disabled" />
+					<!-- <main-buttons :loading="states.loading" :disabled="states.disabled" /> -->
 
 				</div>
 			</div>
 		</div>
 
-		<UDrawer v-model:open="drawerContent.isOpen">
+		<!-- <UDrawer v-model:open="drawerContent.isOpen">
 			<template #content>
 				<article class="my-4 px-2 h-screen overflow-y-auto">
 
@@ -128,7 +126,7 @@ onMounted(() => {
 
 				</article>
 			</template>
-		</UDrawer>
+		</UDrawer> -->
 	</section>
 </template>
 
