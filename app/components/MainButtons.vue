@@ -44,11 +44,5 @@ const actionButtons = [
 	display: grid;
 	grid-template-columns: 1fr;
 }
-.l-fixed {
-	position: fixed;
-    bottom: 50px;
-    left: 0;
-	width: 100%;
-    padding: 0 10px;
-}
+
 </style>
