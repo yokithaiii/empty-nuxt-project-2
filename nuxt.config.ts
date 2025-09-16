@@ -1,8 +1,11 @@
 import Tailwind from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
+	spaLoadingTemplate: 'spa-loading-template.html',
 	compatibilityDate: '2025-07-15',
-	devtools: { enabled: false },
+	future: {
+		compatibilityVersion: 4,
+	},
 	runtimeConfig: {
 		public: {
 			twaToken: process.env.TELEGRAM_BOT_TOKEN,
@@ -10,7 +13,9 @@ export default defineNuxtConfig({
 		},
 	},
 	app: {
+		rootTag: 'main',
 		head: {
+			title: 'Bodyline - marathons app',
 			meta: [
 				{ 'http-equiv': 'cache-control', content: 'no-cache' },
         		{ 'http-equiv': 'expires', content: '0' }
