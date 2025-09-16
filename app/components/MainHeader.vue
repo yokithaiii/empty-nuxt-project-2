@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { SlideOver } from '#components';
 
+const overlay = useOverlay();
+const slideover = overlay.create(SlideOver);
+
+const openSlideover = () => {
+	slideover.open();
+}
 </script>
 
 <template>
@@ -14,7 +21,9 @@
 				</nuxt-link>
 
 				<div class="flex items-center gap-1">
-					
+					<button class="flex" @click="openSlideover">
+						<UIcon name="i-prime:align-justify" class="size-7 bg-emerald-400" />
+					</button>
 				</div>
 			</div>
 		</div>
