@@ -18,10 +18,6 @@ onMounted(() => {
     //
 })
 
-const handleRefreshPage = () => {
-    states.errorText = null;
-}
-
 const saveUserData = async () => {
     try {
         states.loading = true;
@@ -135,28 +131,21 @@ function clearError() {
 
         <USeparator class="mt-4" />
 
-        <base-page class="mt-4" :loading="states.loading" :error-text="states.errorText" :show-error-btn="true"
-            @refresh="handleRefreshPage">
+        <section class="l-buttons gap-1 mt-4">
+            <label for="email-input" class="l-label flex">
+                <span>Ваш Email</span>
+                <input type="email" id="email-input" placeholder="ivan@bodyline.com" v-model="states.userData.email"
+                    @input="clearError">
+            </label>
 
-            <section class="l-buttons gap-1 mt-4">
-
-                <label for="email-input" class="l-label flex">
-                    <span>Ваш Email</span>
-                    <input type="email" id="email-input" placeholder="ivan@bodyline.com" v-model="states.userData.email"
-                        @input="clearError">
-                </label>
-
-                <label class="l-label flex">
-                    <UButton class="justify-center" size="lg" @click="saveUserData" :loading="states.loading" :disabled="states.loading">
-                        <span class="text-[16px] line-clamp-1">
-                            {{ states.loading ? 'Сохранение...' : 'Сохранить данные' }}
-                        </span>
-                    </UButton>
-                </label>
-
-            </section>
-
-        </base-page>
+            <label class="l-label flex">
+                <UButton class="justify-center" size="lg" @click="saveUserData" :loading="states.loading" :disabled="states.loading">
+                    <span class="text-[16px] line-clamp-1">
+                        {{ states.loading ? 'Сохранение...' : 'Сохранить данные' }}
+                    </span>
+                </UButton>
+            </label>
+        </section>
     </div>
 </template>
 
