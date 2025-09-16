@@ -15,6 +15,14 @@ export default defineNuxtConfig({
 			apiUrl: process.env.BACKEND_API_URL,
 		},
 	},
+	app: {
+		head: {
+			meta: [
+				{ 'http-equiv': 'cache-control', content: 'no-cache' },
+        		{ 'http-equiv': 'expires', content: '0' }
+			]
+		}
+	},
 	modules: [
 		'@nuxt/ui',
 		'@nuxt/eslint',
