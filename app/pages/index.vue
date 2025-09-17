@@ -79,13 +79,16 @@ const checkUser = async () => {
 	states.loading = true;
 	try {
 		getEmail();
-		const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
 
-		if (res.status === 200 && res._data) {
-			store.value.have_workout = res._data.have_workout;
-		} else {
-			states.disabled = true;
-		}
+		setTimeout( async () => {
+			const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+	
+			if (res.status === 200 && res._data) {
+				store.value.have_workout = res._data.have_workout;
+			} else {
+				states.disabled = true;
+			}
+		});
 
 	} catch (err: any) {
 		states.errorText = null;
@@ -108,7 +111,7 @@ onMounted(() => {
 	setTimeout(() => {
 		checkUser();
 		getMarathon();
-	}, 100);
+	}, 1000);
 });
 
 </script>
