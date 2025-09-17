@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useWebAppCloudStorage } from 'vue-tg';
-
+import type { IListMarathon } from '~/types/common'
 import type { NuxtError } from '#app'
 
 const props = defineProps({
@@ -75,11 +75,38 @@ const getMarathon = async () => {
 	}
 };
 
+const checkUser = async () => {
+	states.loading = true;
+	try {
+		const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+
+		if (res.status === 200 && res._data) {
+			store.value.have_workout = res._data.have_workout;
+		} else {
+			states.disabled = true;
+		}
+
+	} catch (err: any) {
+		states.errorText = null;
+		states.disabled = true;
+		console.error(err);
+		states.errorText = err.data.error || 'Что - то пошло не так, попробуйте еще';
+	} finally {
+		states.loading = false;
+	}
+};
+
+async function goNext() {
+	drawerContent.value.isOpen = true;
+	drawerContent.value.state = 'final-page';
+}
+
 onMounted(() => {
 	colorMode.preference = 'dark';
 	setTimeout(() => {
 		getEmail();
 		getMarathon();
+		checkUser();
 	}, 100);
 });
 
@@ -115,7 +142,7 @@ onMounted(() => {
 					</template>
 					<template v-else>
 						<h2 class="text-lg text-white mt-2">
-							Вы на странице покупки марафона -
+							{{ store.have_workout ? 'У вас есть марафон' : 'Вы на странице покупки марафона'}} -
 							<br>
 							<span class="text-emerald-400">{{ states.data?.title ?? 'Не удалось загрузить марафон'
 								}}</span>
@@ -132,13 +159,20 @@ onMounted(() => {
 						</span>
 					</div>
 
-					<main-buttons :loading="states.loading" :disabled="states.disabled" />
+					<UButton v-if="store.have_workout" class="justify-center mt-4 w-[100%]" size="lg" 
+						@click="goNext()" 
+						:loading="states.loading" 
+						:disabled="states.loading">
+						Перейти к данным
+					</UButton>
+
+					<main-buttons v-else :loading="states.loading" :disabled="states.disabled" />
 
 				</div>
 			</div>
 		</div>
 
-		<UDrawer v-model:open="drawerContent.isOpen">
+		<UDrawer v-model:open="drawerContent.isOpen" @close="checkUser()">
 			<template #content>
 				<article class="my-4 px-2 h-screen overflow-y-auto">
 

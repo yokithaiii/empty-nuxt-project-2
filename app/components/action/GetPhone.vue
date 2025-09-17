@@ -131,7 +131,7 @@ function clearError() {
 
                 <label for="" class="l-label">
                     <span>Введите номер телефона</span>
-                    <UInput v-maska="'+7 (###) ###-##-##'" placeholder="+7 (999) 999-99-99" icon="ant-design:phone-filled" v-model="states.userData.phone"/>
+                    <UInput v-maska="'+7 (###) ###-##-##'" :autofocus="false" placeholder="+7 (999) 999-99-99" icon="ant-design:phone-filled" v-model="states.userData.phone"/>
                 </label>
 
                 <label class="l-label flex">

@@ -9,9 +9,20 @@ const props = defineProps<{
 	disabled: boolean;
 }>();
 
+let title = 'Купить марафон 🏆';
+
+const actionButtons = [
+	{
+		id: 1,
+		title: title,
+		state: 'get-email-page',
+	}
+];
+
 const openCardDetail = async (state: string) => {
 	if (store.value.email) {
 		if (store.value.have_workout) {
+			title = 'Перейти к данным';
 			drawerContent.value.state = 'final-page';
 		} else {
 			if (store.value.buy_link) {
@@ -29,14 +40,6 @@ const openCardDetail = async (state: string) => {
 	}
 	drawerContent.value.isOpen = true;
 };
-
-const actionButtons = [
-	{
-		id: 1,
-		title: 'Купить марафон 🏆',
-		state: 'get-email-page',
-	}
-];
 </script>
 
 <template>

@@ -9,6 +9,10 @@ interface IPassword {
 	password: null | string
 }
 
+interface IPhone {
+	have_phone: boolean
+}
+
 const states = reactive({
 	text: '',
 	loading: false,
@@ -16,6 +20,26 @@ const states = reactive({
 	data: null as null | IListMarathon,
 	password: null as null | string,
 })
+
+const getPhone = async () => {
+	states.loading = true;
+	try {
+		const res = await $fetch.raw<IPhone>(`${useApi()}/get-phone?email=${store.value.email}`);
+
+		if (res.status === 200 && res._data) {
+			if (!res._data.have_phone) {
+				drawerContent.value.state = 'get-phone-page';
+			}
+		}
+
+	} catch (err: any) {
+		states.errorText = null;
+		console.error(err);
+		states.errorText = err.data.error || 'Что - то пошло не так, попробуйте еще';
+	} finally {
+		states.loading = false;
+	}
+}
 
 const getData = async () => {
 	states.loading = true;
@@ -25,12 +49,6 @@ const getData = async () => {
 		if (res.status === 200 && res._data) {
 			states.data = res._data;
 			states.data.user.email = store.value.email;
-
-			if (res._data.is_new_user === false) {
-				states.data.user.phone = res._data.user.phone;
-			} else {
-				states.data.user.phone = store.value.phone;
-			}
 		}
 
 		if (!store.value.password) {
@@ -43,10 +61,6 @@ const getData = async () => {
 			}
 		}
 
-		if (!states.data?.user.phone) {
-			drawerContent.value.state = 'get-phone-page';
-		}
-
 	} catch (err: any) {
 		states.errorText = null;
 		console.error(err);
@@ -57,6 +71,7 @@ const getData = async () => {
 }
 
 onMounted(() => {
+	getPhone();
 	getData();
 })
 
