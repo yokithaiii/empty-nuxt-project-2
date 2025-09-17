@@ -14,6 +14,7 @@ const states = reactive({
 	buyed: false,
 	paymentSuccess: false,
 	checkingPayment: false,
+	hide: true,
 });
 
 let checkInterval: NodeJS.Timeout | null = null;
@@ -84,6 +85,9 @@ onMounted(() => {
 	window.addEventListener('message', handleMessage);
 	checkBuy()
 	startPaymentChecking()
+	setTimeout(() => {
+		states.hide = false
+	}, 3000);
 });
 
 onUnmounted(() => {
@@ -152,6 +156,7 @@ async function goPrev() {
 				</div>
 				
 				<div v-else class="flex-1">
+					<USkeleton v-if="states.hide" class="h-[600px] w-[100%]" />
 					<iframe v-if="store.buy_link" :src="store.buy_link" class="payment-webview" @load="handleWebViewLoad"
 						@error="handleWebViewError" frameborder="0" allow="payment *" allowfullscreen scrolling="no" style="overflow: hidden;">
 					</iframe>
