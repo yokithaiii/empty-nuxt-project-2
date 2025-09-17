@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { IListMarathon } from '~/types/common';
+
 const drawerContent = useDrawer();
 const store = useStore();
 
@@ -7,12 +9,20 @@ const props = defineProps<{
 	disabled: boolean;
 }>();
 
-const openCardDetail = (state: string) => {
+const openCardDetail = async (state: string) => {
 	if (store.value.email) {
 		if (store.value.have_workout) {
 			drawerContent.value.state = 'final-page';
 		} else {
-			drawerContent.value.state = 'payment-page';
+			if (store.value.buy_link) {
+				drawerContent.value.state = 'payment-page';
+			} else {
+				const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+				if (res.status === 200 && res._data) {
+					store.value.buy_link = res._data.buy_link;
+					drawerContent.value.state = 'payment-page';
+				}
+			}
 		}
 	} else {
 		drawerContent.value.state = state;
