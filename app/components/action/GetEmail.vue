@@ -148,7 +148,7 @@ function clearError() {
 
                 <label for="email-input" class="l-label flex">
                     <span>Ваш Email</span>
-                    <input type="email" id="email-input" placeholder="ivan@bodyline.com" v-model="states.userData.email"
+                    <input type="email" id="email-input" placeholder="bodyline@mail.ru" v-model="states.userData.email"
                         @input="clearError">
                 </label>
 
