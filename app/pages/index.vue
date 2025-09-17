@@ -78,6 +78,7 @@ const getMarathon = async () => {
 const checkUser = async () => {
 	states.loading = true;
 	try {
+		getEmail();
 		const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
 
 		if (res.status === 200 && res._data) {
