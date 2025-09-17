@@ -45,10 +45,10 @@ const openModalEmail = () => {
 
 const getEmail = async () => {
 	try {
-		// const res = await cloudStorage.getStorageItem('user_email')
-		// if (res) {
-		// 	store.value.email = res;
-		// }
+		const res = await cloudStorage.getStorageItem('user_email')
+		if (res) {
+			store.value.email = res;
+		}
 	} catch (err) {
 		console.error(err);
 	}
