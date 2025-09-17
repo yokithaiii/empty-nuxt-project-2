@@ -16,7 +16,7 @@ const socials = [
 </script>
 
 <template>
-	<USlideover class="max-w-[320px]" title="Полезные ссылки" close-icon="i-akar-icons:cross">
+	<USlideover class="max-w-[320px] text-emerald-400" title="Полезные ссылки" close-icon="i-akar-icons:cross">
 		<template #body>
 			<div class="flex flex-col h-full">
 				<ul class="grid grid-cols-5 gap-2">
@@ -35,3 +35,9 @@ const socials = [
 		</template>
 	</USlideover>
 </template>
+
+<style scoped>
+	h2 {
+		color: #de9f51!important
+	}
+</style>

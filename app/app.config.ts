@@ -18,6 +18,8 @@ export default defineAppConfig({
 		slideover: {
 			slots: {
 				overlay: '!pointer-events-none',
+				title: 'text-emerald-400',
+				close: 'text-emerald-400'
 			},
 		},
 	},

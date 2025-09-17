@@ -25,7 +25,12 @@ const getData = async () => {
 		if (res.status === 200 && res._data) {
 			states.data = res._data;
 			states.data.user.email = store.value.email;
-			states.data.user.phone = res._data.user.phone;
+
+			if (res._data.is_new_user === false) {
+				states.data.user.phone = res._data.user.phone;
+			} else {
+				states.data.user.phone = store.value.phone;
+			}
 		}
 
 		if (!store.value.password) {
