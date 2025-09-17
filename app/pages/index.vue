@@ -105,8 +105,8 @@ onMounted(() => {
 	colorMode.preference = 'dark';
 	setTimeout(() => {
 		getEmail();
-		getMarathon();
 		checkUser();
+		getMarathon();
 	}, 100);
 });
 
