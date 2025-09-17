@@ -103,9 +103,9 @@ async function goNext() {
 
 onMounted(() => {
 	colorMode.preference = 'dark';
+	getEmail();
+	checkUser();
 	setTimeout(() => {
-		getEmail();
-		checkUser();
 		getMarathon();
 	}, 100);
 });
