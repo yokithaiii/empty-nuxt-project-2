@@ -224,11 +224,11 @@ async function goPrev() {
 	grid-template-columns: 1fr;
 }
 .l-fixed {
-	position: fixed;
+	/* position: fixed; */
     bottom: 50px;
     left: 0;
 	width: 100%;
-    padding: 0 30px;
+    /* padding: 0 30px; */
 	gap: 10px;
 }
 
