@@ -155,7 +155,7 @@ async function goPrev() {
 					<p class="text-gray-600">Доступ к тренировкам активирован</p>
 				</div>
 				
-				<div v-else class="flex-1">
+				<div v-else class="flex-1" style="border-radius: 10px; overflow: hidden;">
 					<USkeleton v-if="states.hide" class="h-[600px] w-[100%]" />
 					<iframe v-if="store.buy_link" :src="store.buy_link" class="payment-webview" @load="handleWebViewLoad"
 						@error="handleWebViewError" frameborder="0" allow="payment *" allowfullscreen scrolling="no" style="overflow: hidden;">
@@ -237,7 +237,9 @@ iframe {
 }
 
 .height-calc {
-	height: calc(100% - 120px);
+	/* height: calc(100% - 120px); */
+	height: 100%;
+	max-height: calc(100vh - 200px);
 	border-radius: 8px;
     overflow: hidden;
 }
