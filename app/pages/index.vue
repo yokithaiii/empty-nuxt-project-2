@@ -29,6 +29,9 @@ const store = useStore();
 const drawerContent = useDrawer();
 const colorMode = useColorMode();
 const cloudStorage = useWebAppCloudStorage();
+const route = useRoute();
+
+const ref = route.query.ref || '';
 
 const openModalEmail = () => {
 	store.value.phone = null;
@@ -81,9 +84,6 @@ const checkUser = async () => {
 		getEmail();
 
 		setTimeout( async () => {
-			const route = useRoute();
-			const ref = route.query.ref || '';
-
 			const res = await $fetch.raw<IListMarathon>(
 				useApi() + `/check-user?email=${store.value.email}&ref=${ref}`
 			);
@@ -176,6 +176,10 @@ onMounted(() => {
 					</UButton>
 
 					<main-buttons v-else :loading="states.loading" :disabled="states.disabled" />
+
+					<div class="mt-2" style="font-size: 10px;">Вы перешли по реферальному коду: 
+						<span class="text-emerald-400">{{ ref }}</span>
+					</div>
 
 				</div>
 			</div>
