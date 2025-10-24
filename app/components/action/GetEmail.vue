@@ -56,7 +56,9 @@ const saveUserData = async () => {
 const getData = async () => {
 	states.loading = true;
 	try {
-		const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+        const res = await $fetch.raw<IListMarathon>(
+				useApi() + `/check-user?email=${store.value.email}&ref=${store.value.ref}`
+			);
 
 		if (res.status === 200 && res._data) {
             store.value.firstname = res._data.user.firstname;

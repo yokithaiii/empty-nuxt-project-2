@@ -12,6 +12,7 @@ export default function () {
 			buy_link: null,
 			have_workout: false,
 			is_new_user: false,
+			ref: ''
 		}
 	});
 }

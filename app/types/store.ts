@@ -8,4 +8,5 @@ export interface IStore {
 	buy_link: string | null;
 	is_new_user: boolean;
 	have_workout: boolean;
+	ref: string;
 }

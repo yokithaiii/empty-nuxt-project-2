@@ -42,6 +42,7 @@ const openModalEmail = () => {
 	store.value.buy_link = null;
 	store.value.is_new_user = false;
 	store.value.have_workout = false;
+	store.value.ref = '';
 	drawerContent.value.isOpen = true;
 	drawerContent.value.state = 'get-email-page';
 };
@@ -88,6 +89,8 @@ const checkUser = async () => {
 				useApi() + `/check-user?email=${store.value.email}&ref=${ref}`
 			);
 	
+			store.value.ref = ref as string;
+
 			if (res.status === 200 && res._data) {
 				store.value.have_workout = res._data.have_workout;
 			} else {
