@@ -81,7 +81,12 @@ const checkUser = async () => {
 		getEmail();
 
 		setTimeout( async () => {
-			const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+			const route = useRoute();
+			const ref = route.query.ref || '';
+
+			const res = await $fetch.raw<IListMarathon>(
+				useApi() + `/check-user?email=${store.value.email}&ref=${ref}`
+			);
 	
 			if (res.status === 200 && res._data) {
 				store.value.have_workout = res._data.have_workout;
