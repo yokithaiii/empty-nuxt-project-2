@@ -31,7 +31,7 @@ const colorMode = useColorMode();
 const cloudStorage = useWebAppCloudStorage();
 const route = useRoute();
 
-const ref = route.query.ref || '';
+const ref = route.query.start || '';
 
 const openModalEmail = () => {
 	store.value.phone = null;
