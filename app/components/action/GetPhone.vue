@@ -130,7 +130,7 @@ function clearError() {
             <section class="l-buttons gap-1 mt-4">
 
                 <label class="l-label">
-                    <span>Введите номер телефона</span>
+                    <span>Последний шаг! Введите номер телефона</span>
                     <UInput v-maska="'+7 (###) ###-##-##'" placeholder="+7 (999) 999-99-99" icon="ant-design:phone-filled" v-model="states.userData.phone"/>
                 </label>
 
