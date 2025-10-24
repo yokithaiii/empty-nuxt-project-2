@@ -28,7 +28,9 @@ const openCardDetail = async (state: string) => {
 			if (store.value.buy_link) {
 				drawerContent.value.state = 'payment-page';
 			} else {
-				const res = await $fetch.raw<IListMarathon>(useApi() + `/check-user?email=` + store.value.email);
+				const res = await $fetch.raw<IListMarathon>(
+					useApi() + `/check-user?email=${store.value.email}&ref=${store.value.ref}`
+				);
 				if (res.status === 200 && res._data) {
 					store.value.buy_link = res._data.buy_link;
 					drawerContent.value.state = 'payment-page';
