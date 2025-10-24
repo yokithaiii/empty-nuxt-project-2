@@ -178,7 +178,7 @@ onMounted(() => {
 					<main-buttons v-else :loading="states.loading" :disabled="states.disabled" />
 
 					<div class="mt-2" style="font-size: 10px;">Вы перешли по реферальному коду: 
-						<span class="text-emerald-400">{{ ref }}</span>
+						<span class="text-emerald-400">{{ route.query }}</span>
 					</div>
 
 				</div>
