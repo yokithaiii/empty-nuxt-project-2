@@ -42,7 +42,6 @@ const openModalEmail = () => {
 	store.value.buy_link = null;
 	store.value.is_new_user = false;
 	store.value.have_workout = false;
-	store.value.ref = '';
 	drawerContent.value.isOpen = true;
 	drawerContent.value.state = 'get-email-page';
 };
