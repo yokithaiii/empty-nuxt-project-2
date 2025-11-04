@@ -159,18 +159,20 @@ const active = ref(2)
 						<span>{{ states.data.user?.firstname ?? 'Имя' }} {{ states.data.user?.lastname ?? 'Фамилия' }}🏆</span>
 					</div>
 
-					<USeparator v-if="store.password && store.is_new_user" class="mt-4" />
+					<USeparator class="mt-4" />
 
-					<div v-if="store.password && store.is_new_user"  class="mt-[10px]">
+					<div class="mt-[10px]">
 						<span>Ваши данные для входа в приложение:</span>
 						<br>
 						<span class="cursor-pointer text-xs" @click="copyToClipboard(states.data.user?.email ?? '')">
 							Логин: <code class="text-secondary text-xs">{{ states.data.user?.email ?? '' }}</code>
 						</span>
 						<br>
-						<span class="cursor-pointer text-xs" @click="copyToClipboard(store.password ?? '')">
-							Новый пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
+						<span v-if="store.password" class="cursor-pointer text-xs" @click="copyToClipboard(store.password ?? '')">
+							Пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
 						</span>
+						<br>
+						<span class="mt-4 text-xs">Если нету пароля, войдите в приложение через Забыли пароль</span>
 					</div>
 
 					<template #footer>
