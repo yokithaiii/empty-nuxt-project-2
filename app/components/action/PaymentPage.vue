@@ -81,17 +81,45 @@ const handleMessage = (event: MessageEvent) => {
 	}
 };
 
+
+const steps = [
+	'Загрузка виджета оплаты...',
+	'Ждем оплату...',
+	'Авторизация оплаты...',
+	'Ответ от банка...',
+	'Загрузка данных...',
+	'Готово!'
+]
+
+const progressValue = ref(0)
+let interval = null as any
+const totalDuration = 100000
+const stepCount = steps.length
+const timePerStep = totalDuration / stepCount
+
 onMounted(() => {
+	let currentStep = 0
 	window.addEventListener('message', handleMessage);
 	checkBuy()
 	startPaymentChecking()
 	setTimeout(() => {
 		states.hide = false
 	}, 3000);
+
+	interval = setInterval(() => {
+		currentStep++
+		progressValue.value = currentStep
+
+		if (currentStep >= stepCount) {
+			clearInterval(interval)
+			interval = null
+		}
+	}, timePerStep)
 });
 
 onUnmounted(() => {
 	window.removeEventListener('message', handleMessage);
+	if (interval) clearInterval(interval);
 });
 
 const items = ref<StepperItem[]>([
@@ -134,6 +162,8 @@ async function goNext() {
 async function goPrev() {
 	drawerContent.value.state = 'get-email-page';
 }
+
+
 </script>
 
 <template>
@@ -160,6 +190,14 @@ async function goPrev() {
 					<iframe v-if="store.buy_link" :src="store.buy_link" class="payment-webview" @load="handleWebViewLoad"
 						@error="handleWebViewError" frameborder="0" allow="payment *" allowfullscreen scrolling="no" style="overflow: hidden;">
 					</iframe>
+				</div>
+
+				<div class="mt-4">
+					<UProgress
+						v-model="progressValue"
+						:max="steps.length"
+						:label="steps[progressValue - 1]"
+					/>
 				</div>
 
 				<section class="l-buttons gap-1 mt-4 l-fixed">
