@@ -171,8 +171,8 @@ const active = ref(2)
 						</span>
 						<br>
 						<span class="cursor-pointer text-xs">
-							Пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
-							<button @click="copyToClipboard(store.password ?? '')" class="ml-2 p-1 rounded bg-primary text-black">Скопировать пароль</button>
+							Пароль: <code class="text-secondary text-xs">{{ states.data.user?.password ?? '' }}</code>
+							<button @click="copyToClipboard(states.data.user?.password ?? '')" class="ml-2 p-1 rounded bg-primary text-black">Скопировать пароль</button>
 						</span>
 						<br>
 						<br>
