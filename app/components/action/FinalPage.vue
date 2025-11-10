@@ -164,15 +164,19 @@ const active = ref(2)
 					<div class="mt-[10px]">
 						<span>Ваши данные для входа в приложение:</span>
 						<br>
-						<span class="cursor-pointer text-xs" @click="copyToClipboard(states.data.user?.email ?? '')">
+						<br>
+						<span class="cursor-pointer text-xs">
 							Логин: <code class="text-secondary text-xs">{{ states.data.user?.email ?? '' }}</code>
+							<button @click="copyToClipboard(states.data.user?.email ?? '')" class="ml-2 p-1 rounded bg-primary text-black">Скопировать логин</button>
 						</span>
 						<br>
-						<span v-if="store.password" class="cursor-pointer text-xs" @click="copyToClipboard(store.password ?? '')">
+						<span class="cursor-pointer text-xs">
 							Пароль: <code class="text-secondary text-xs">{{ store.password ?? '' }}</code>
+							<button @click="copyToClipboard(store.password ?? '')" class="ml-2 p-1 rounded bg-primary text-black">Скопировать пароль</button>
 						</span>
 						<br>
-						<span class="mt-4 text-xs">Если нету пароля, войдите в приложение через Забыли пароль</span>
+						<br>
+						<span class="mt-4 text-xs">Если нету пароля, войдите в приложение через "Забыли пароль"</span>
 					</div>
 
 					<template #footer>
