@@ -97,6 +97,8 @@ const totalDuration = 100000
 const stepCount = steps.length
 const timePerStep = totalDuration / stepCount
 
+const newLink = `https://site.bodylineapp.com/payment?from=bot&email=${store.value.email}&workout_id=a06d4fc4-8867-4cbb-9e91-82be6871305d&foreign_card=0&amount=10`
+
 onMounted(() => {
 	let currentStep = 0
 	window.addEventListener('message', handleMessage);
@@ -187,7 +189,7 @@ async function goPrev() {
 				
 				<div v-else class="flex-1" style="border-radius: 10px; overflow: hidden;">
 					<USkeleton v-if="states.hide" class="h-[600px] w-[100%]" />
-					<iframe v-if="store.buy_link" :src="store.buy_link" class="payment-webview" @load="handleWebViewLoad"
+					<iframe v-if="newLink" :src="newLink" class="payment-webview" @load="handleWebViewLoad"
 						@error="handleWebViewError" frameborder="0" allow="payment *" allowfullscreen scrolling="no" style="overflow: hidden;">
 					</iframe>
 				</div>
