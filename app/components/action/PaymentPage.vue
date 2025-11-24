@@ -97,7 +97,7 @@ const totalDuration = 100000
 const stepCount = steps.length
 const timePerStep = totalDuration / stepCount
 
-const newLink = `https://site.bodylineapp.com/payment?from=bot&email=${store.value.email}&workout_id=a06d4fc4-8867-4cbb-9e91-82be6871305d&foreign_card=0&amount=10`
+const newLink = `https://site.bodylineapp.com/payment?from=bot&email=${store.value.email}&workout_id=a06d4fc4-8867-4cbb-9e91-82be6871305d&foreign_card=0&amount=10&ref=${store.value.ref}`
 
 onMounted(() => {
 	let currentStep = 0
