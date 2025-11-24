@@ -36,7 +36,7 @@ const saveUserData = async () => {
         store.value.email = states.userData.email;
         
         if (store.value.email) {
-            await cloudStorage.setStorageItem('user_email', store.value.email);
+            // await cloudStorage.setStorageItem('user_email', store.value.email);
         }
         
         getData();
