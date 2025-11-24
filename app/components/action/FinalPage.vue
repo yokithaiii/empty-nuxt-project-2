@@ -90,7 +90,7 @@ const openApp = () => {
 }
 
 const openCloseChat = () => {
-	window.open('https://t.me/+dtcIRcjq_cZmMWMy', '_blank');
+	window.open('https://t.me/+qmWh_Z9DUug3MGEy', '_blank');
 }
 
 const copyToClipboard = async (text: string) => {
